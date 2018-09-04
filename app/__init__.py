@@ -21,6 +21,4 @@ def create_app(config_name):
 
     api.add_resource(Questions, '/api/v1/question')
     
-    
-   
     return app
