@@ -49,5 +49,23 @@ class QuestionsWithId(Resource):
             return {"message":"No question with that id"},400
 
         return {"Question":question}, 200
-       
 
+class Answer(Resource):
+    def __init__(self, url):
+        self.model = Models()
+        self.answer_arg = reqparse.RequestParser()
+        self.answer_arg.add_argument('answer',
+                type=str, required=True,
+                help='answer is required!{"answer":"you ans here"}'
+                )
+
+    def post(self,id):
+        valid = validate()
+        user_ans = self.answer_arg.parse_args()
+        ans = user_ans['answer']
+        if(valid.valid_username(ans) == False):
+            return {"error":"answer should contain text"}, 400
+        
+        self.model.answer_a_question(id,ans)
+        return {"message":"your answer has been posted"}, 201
+    
