@@ -2,7 +2,7 @@
 input before storing to database"""
 
 import re
-from app.create_tables import main
+
 
 class Validate():
     """class to ensure users input are valid"""
