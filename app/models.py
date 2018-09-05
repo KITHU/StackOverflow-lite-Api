@@ -41,7 +41,4 @@ class Models(object):
             if (id in answers.values()) == True:
                 ans.append(answers['answer']) 
         return ans
-
-
-
-        
+    
