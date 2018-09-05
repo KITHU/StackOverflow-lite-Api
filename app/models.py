@@ -22,11 +22,13 @@ class Models(object):
        
     
     def get_a_question(self,id):
+        qstion = {}
         for question in self.database["my_questions"]:
             if (id in question.values()) == True:
                 ans = self.get_answers_to_a_question(id)
-                question["answers"] = ans
-                return question
+                qstion = question.copy()
+                qstion["answers"] = ans
+                return qstion
         return "No question with that id"
 
     def answer_a_question(self,question_id,answer):
@@ -39,7 +41,4 @@ class Models(object):
             if (id in answers.values()) == True:
                 ans.append(answers['answer']) 
         return ans
-
-
-
-        
+    
