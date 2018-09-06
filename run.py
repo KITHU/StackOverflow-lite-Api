@@ -1,4 +1,3 @@
-"""module that runs the api"""
 import os
 from app import create_app
 

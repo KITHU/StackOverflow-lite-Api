@@ -1,4 +1,3 @@
-"""config module for the api"""
 import os
 
 class Config(object):

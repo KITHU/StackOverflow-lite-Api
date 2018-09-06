@@ -35,17 +35,21 @@ class Validate():
         if len(title) < 2:
             return False
         return True
+ 
 
-# class AuthorizationMethod():
-#     @staticmethod
-#     def authorize():
-#         authorizations = {
-#         'apikey': {
-#             'type':'apiKey',
-#             'schema': 'Bearer',
-#             'in': 'header',
-#             'header':'Bearer',
-#             'name': 'Authorization'
-#             }
-#         }
-#         return authorizations
+class AuthorizationMethod():
+    @staticmethod
+    def authorize():
+        authorizations = {
+        'apikey': {
+            'type':'apiKey',
+            'schema': 'Bearer',
+            'in': 'header',
+            'header':'Bearer',
+            'name': 'Authorization'
+            }
+        }
+        return authorizations
+
+
+
