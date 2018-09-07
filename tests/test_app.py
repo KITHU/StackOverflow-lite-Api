@@ -5,6 +5,7 @@ from app.models import Models
 from app import create_app
 from app.questions import Questions, QuestionsWithId, Answer
 
+
 class TestModels(unittest.TestCase):
     """class to hold test ...test models and routes"""
     def setUp(self):
@@ -15,20 +16,19 @@ class TestModels(unittest.TestCase):
         self.new_Question = ['data structures',
                              'how to copy a python dictionary to another?']
 
-        self.new_question = {"title":"sets",
-                             "body":"Are set mutable?"}
+        self.new_question = {"title": "sets",
+                             "body": "Are set mutable?"}
 
-        self.new_question1 = {"title":" ",
-                              "body":"Are set mutable?"}
+        self.new_question1 = {"title": " ",
+                              "body": "Are set mutable?"}
 
-        self.new_question2 = {"title":"lists ",
-                              "body":" "}
+        self.new_question2 = {"title": "lists ",
+                              "body": " "}
 
-        self.new_answer = {"answer":"my answer is bhhhhhhh"}
-
+        self.new_answer = {"answer": "my answer is bhhhhhhh"}
 
     def test_add_question(self):
-        """Tests if add question method works"""
+        """Tests if add question method works and sends data to database"""
         qst = Models()
         qst.add_question(self.new_Question[0], self.new_Question[1])
         all_qst = qst.get_all_questions()
@@ -36,7 +36,7 @@ class TestModels(unittest.TestCase):
         self.assertEqual(dct["title"], self.new_Question[0])
 
     def test_get_a_question1(self):
-        """test if a question can be returned"""
+        """test if a question can be returned from database"""
         qst = Models()
         all_qst = qst.get_all_questions()
         dct = all_qst[0]
@@ -78,17 +78,15 @@ class TestModels(unittest.TestCase):
         res2 = self.tester.post("/api/v1/question", data=self.new_question2)
         self.assertEqual(res2.status_code, 400)
 
-
-
     def test_api_can_get_a_questions(self):
         """test if api can return a question for invalid id"""
         res = self.tester.get("/api/v1/question/rt6575766")
-        self.assertEqual(res.status_code, 400)
+        self.assertEqual(res.status_code, 404)
 
     def test_api_post_an_answer(self):
-        """test if a question can be posted to the database 
-        if the id is invalid"""
+        """test if a question can be posted
+        to the database if the id is invalid """
         res = self.tester.post("/api/v1/question/rt6575766/answer",
                                data=self.new_answer)
-        self.assertEqual(res.status_code, 400)
+        self.assertEqual(res.status_code, 404)
        
