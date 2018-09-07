@@ -36,7 +36,8 @@ class TestModels(unittest.TestCase):
         self.assertEqual(dct["title"], self.new_Question[0])
 
     def test_get_a_question1(self):
-        """test if a question can be returned from database"""
+        """test if a question can be fetched from models
+        'in memory database' """
         qst = Models()
         all_qst = qst.get_all_questions()
         dct = all_qst[0]
@@ -45,7 +46,7 @@ class TestModels(unittest.TestCase):
         self.assertEqual(question["Question"], self.new_Question[1])
 
     def test_get_a_question(self):
-        """Tests if get a question works with wrong id"""
+        """tests if get a question works with wrong id"""
         qst = Models()
         one_question = qst.get_a_question("eb675fkxkdffdg")
         self.assertEqual(one_question, "No question with that id")
